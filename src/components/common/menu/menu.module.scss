@@ -1,0 +1,20 @@
+.menu-wrapper{
+    display: flex;
+    justify-content: flex-end;
+
+}
+
+.menu-body{
+    position: absolute;
+}
+.menu{
+
+}
+
+@media (width > 768px){
+    .menu-body{
+        width: 200px;
+        bottom: -80px;
+        right: 50px;
+    }
+}
