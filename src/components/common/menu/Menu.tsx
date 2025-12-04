@@ -30,7 +30,7 @@ const Menu: React.FC<MenuComponentProps> = ({ menuItems }) => {
   const showMenu = () => {
     setMenuState((prev) => !prev)
   }
-  return <div className={cx("menu-wrapper")}>
+  return <div className={cx("menu-wrapper")} onClick={(e) => e.stopPropagation()}>
     {menuState ? <AntMenu items={items} className={cx("menu-body")}/> : null}
     <FontAwesomeIcon icon={faEllipsis} onClick={showMenu} className={cx("menu")}>
       

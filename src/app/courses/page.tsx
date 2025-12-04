@@ -1,5 +1,5 @@
 "use client";
-import { Button, Card } from "antd";
+import { Button } from "antd";
 import { Content } from "antd/es/layout/layout";
 import DynamicForm from "@/src/components/common/dynamicForm/DynamicForm";
 import { FieldConfig } from "@/src/components/common/dynamicForm/DynamicForm";
@@ -34,7 +34,6 @@ function Courses() {
     };
     const response = await instance.post('/courses', requestBody);
     setCourses((prevCourses) => [...prevCourses, response.data.data]);
-    console.log("Course creation response:", response.data.data);
     closeForm();
   }
 
@@ -42,10 +41,8 @@ function Courses() {
     const state = useUIStore.getState()
     values.id = state.currentData?.id;
     values.instructor_id = state.currentData?.instructor_id;
-    console.log(values)
     const response = await instance.put(`/courses/${state.currentData?.id}`, values);
     const newCourse = response.data.data;
-    console.log("Course update response:",response.data)
     setCourses((prevCourses) => {
       const updateCourses = prevCourses.filter((course) => course.id !== newCourse.id);
       return [...updateCourses, newCourse]
@@ -116,7 +113,6 @@ function Courses() {
             name: 'Sửa',
             action: () => {
               openForm('dynamicFormEditCourse', course);
-              console.log('Sửa course:', course,"current data", currentData);
             },
           },
           {

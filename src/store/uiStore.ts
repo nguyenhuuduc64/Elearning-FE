@@ -9,6 +9,7 @@ type FormName =
   |  "dynamicForm"
   | "dynamicFormAddCourse"
   | "dynamicFormEditCourse"
+  | "addTestForm"
   | null;
 
 interface UIState {

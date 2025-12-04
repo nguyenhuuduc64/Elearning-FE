@@ -17,11 +17,22 @@ export default function LoginForm() {
     const authStore = useAuthStore();
     const onFinish = async (values: LoginFormValues) => {
         try {
-            console.log("Login values:", values);
             const response = await instance.post('/auth/login', values);
-            console.log("Login response:", response.data.data.accessToken);
             authStore.setAuth(response.data.data.user, response.data.data.accessToken);
             message.success("Đăng nhập thành công!");
+            if (response.data.data.accessToken) {
+            // 🔥 SET COOKIE TỪ CLIENT-SIDE
+            document.cookie = `accessToken=${response.data.data.accessToken}; path=/; max-age=${15 * 60}; secure=${process.env.NODE_ENV === 'production'}; samesite=lax`;
+            
+            // Kiểm tra ngay
+            console.log('Cookie set, checking...');
+            console.log('All cookies:', document.cookie);
+            
+            // Redirect
+            setTimeout(() => {
+                window.location.href = '/courses';
+            }, 100); // Đợi 100ms
+            }
             closeForm();
         } catch (error) {
         message.error("Đăng nhập thất bại!");

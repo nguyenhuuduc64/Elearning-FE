@@ -9,9 +9,9 @@ import RegisterForm from "@/src/components/common/form/RegisterForm";
 import LoginForm from "@/src/components/common/form/LoginForm";
 import { useAuthStore } from "@/src/store/authStore";
 import Image from "next/image";
-
+import {Input} from "antd";
+const {Search} = Input;
 const { Header, Sider, Content } = Layout;
-
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const currentForm = useUIStore((state) => state.currentForm);
   const openForm = useUIStore((state) => state.openForm);
@@ -65,6 +65,12 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
           />
 
           <Space>
+            <Search placeholder="Nhập từ khóa tìm kiếm"
+              allowClear
+              enterButton="Search"
+              size="middle"
+              onSearch={(value) => console.log("Tìm kiếm:", value)}
+            />
             {hasMounted && !isAuthenticated() && (
               <>
                 <Button type="primary" onClick={() => openForm("login")}>

@@ -16,9 +16,7 @@ export default function RegisterForm() {
     }
 
     const onFinish: FormProps<RegisterFormValues>['onFinish']= async (values: RegisterFormValues) => {
-        console.log('Success:', values);
         const response = await instance.post('/auth/register', values);
-        console.log('Registration response:', response.data);
         closeForm();
         message.success('Đăng ký thành công!');
     };

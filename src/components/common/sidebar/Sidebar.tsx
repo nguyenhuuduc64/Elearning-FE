@@ -38,7 +38,6 @@ export default function Sidebar() {
   });
 
   const handleMenuClick = ({ key }: { key: string }) => {
-    console.log('click')
     router.push(key);
   };
 
